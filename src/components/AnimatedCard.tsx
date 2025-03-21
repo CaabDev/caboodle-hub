@@ -8,6 +8,7 @@ interface AnimatedCardProps {
   delay?: number;
   hoverEffect?: boolean;
   variant?: "default" | "gradient" | "subtle" | "glass" | "highlight";
+  glowEffect?: boolean;
 }
 
 const AnimatedCard = ({ 
@@ -15,7 +16,8 @@ const AnimatedCard = ({
   className, 
   delay = 0,
   hoverEffect = true,
-  variant = "default"
+  variant = "default",
+  glowEffect = false
 }: AnimatedCardProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -30,25 +32,26 @@ const AnimatedCard = ({
   const getVariantClasses = () => {
     switch (variant) {
       case "gradient":
-        return "bg-gradient-to-br from-white/95 to-secondary/20 dark:from-gray-800/90 dark:to-gray-900/30 border-white/20";
+        return "bg-gradient-to-br from-card/95 to-secondary/80 border-white/5";
       case "subtle":
-        return "bg-background/50 backdrop-blur-xs border-primary/5";
+        return "bg-background/50 backdrop-blur-xs border-white/5";
       case "glass":
-        return "bg-white/80 backdrop-blur-md border-white/30 dark:bg-gray-900/50 dark:border-gray-800/50";
+        return "bg-card/50 backdrop-blur-md border-white/10";
       case "highlight":
-        return "bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20";
+        return "bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20";
       default:
-        return "glass-card";
+        return "bg-card/80 backdrop-blur-sm border border-white/10";
     }
   };
 
   return (
     <div
       className={cn(
-        "p-6 opacity-0 transform translate-y-4 transition-all duration-500 ease-out rounded-xl border shadow-sm",
+        "p-6 opacity-0 transform translate-y-4 transition-all duration-500 ease-out rounded-xl border shadow-md",
         getVariantClasses(),
         isVisible && "opacity-100 translate-y-0",
-        hoverEffect && "hover:translate-y-[-5px] hover:shadow-md transition-all duration-300",
+        hoverEffect && "hover:translate-y-[-5px] hover:shadow-lg transition-all duration-300",
+        glowEffect && "teal-glow",
         className
       )}
     >

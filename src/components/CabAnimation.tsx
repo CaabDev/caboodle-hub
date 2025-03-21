@@ -33,11 +33,11 @@ const CabAnimation = ({
         className
       )}>
         <div className="animate-float">
-          <Car size={size} className={cn(color, "drop-shadow-md")} />
+          <Car size={size} className={cn(color, "drop-shadow-md teal-glow")} />
         </div>
       </div>
       {showRoad && (
-        <div className="absolute bottom-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+        <div className="absolute bottom-0 w-full h-[2px] bg-gradient-to-r from-transparent via-teal/30 to-transparent" />
       )}
     </div>
   );
