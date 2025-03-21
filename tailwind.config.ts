@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -116,6 +115,19 @@ export default {
 				'shimmer': {
 					'0%': { backgroundPosition: '-1000px 0' },
 					'100%': { backgroundPosition: '1000px 0' }
+				},
+				'soft-bounce': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-15px)' }
+				},
+				'gentle-spin': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' }
+				},
+				'gradient-flow': {
+					'0%': { backgroundPosition: '0% 50%' },
+					'50%': { backgroundPosition: '100% 50%' },
+					'100%': { backgroundPosition: '0% 50%' }
 				}
 			},
 			animation: {
@@ -129,7 +141,10 @@ export default {
 				'car-move-fast': 'car-move-fast 10s linear infinite',
 				'pulse-light': 'pulse-light 3s ease-in-out infinite',
 				'float': 'float 6s ease-in-out infinite',
-				'shimmer': 'shimmer 2s linear infinite'
+				'shimmer': 'shimmer 2s linear infinite',
+				'soft-bounce': 'soft-bounce 6s ease-in-out infinite',
+				'gentle-spin': 'gentle-spin 10s linear infinite',
+				'gradient-flow': 'gradient-flow 5s ease infinite'
 			},
 		}
 	},

@@ -7,13 +7,15 @@ interface CabAnimationProps {
   color?: string;
   size?: number;
   speed?: "slow" | "normal" | "fast";
+  showRoad?: boolean;
 }
 
 const CabAnimation = ({ 
   className, 
   color = "text-primary", 
   size = 48,
-  speed = "normal"
+  speed = "normal",
+  showRoad = true
 }: CabAnimationProps) => {
   const getSpeedClass = () => {
     switch (speed) {
@@ -34,7 +36,9 @@ const CabAnimation = ({
           <Car size={size} className={cn(color, "drop-shadow-md")} />
         </div>
       </div>
-      <div className="absolute bottom-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+      {showRoad && (
+        <div className="absolute bottom-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      )}
     </div>
   );
 };

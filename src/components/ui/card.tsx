@@ -5,18 +5,37 @@ import { cn } from "@/lib/utils"
 
 const Card = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & { gradient?: boolean }
->(({ className, gradient = false, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      "rounded-lg border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:shadow-md",
-      gradient && "bg-gradient-to-br from-white/90 to-secondary/30 dark:from-gray-800/90 dark:to-gray-900/30",
-      className
-    )}
-    {...props}
-  />
-))
+  React.HTMLAttributes<HTMLDivElement> & { gradient?: boolean, variant?: "default" | "highlight" | "subtle" | "glass" }
+>(({ className, gradient = false, variant = "default", ...props }, ref) => {
+  const getVariantClass = () => {
+    if (gradient) {
+      return "bg-gradient-to-br from-white/95 to-secondary/20 dark:from-gray-800/90 dark:to-gray-900/30";
+    }
+
+    switch (variant) {
+      case "highlight":
+        return "bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20";
+      case "subtle":
+        return "bg-background/50 backdrop-blur-xs border-primary/5";
+      case "glass":
+        return "bg-white/80 backdrop-blur-md border-white/30 dark:bg-gray-900/50 dark:border-gray-800/50";
+      default:
+        return "bg-card";
+    }
+  };
+
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "rounded-lg border text-card-foreground shadow-sm transition-all duration-300 hover:shadow-md",
+        getVariantClass(),
+        className
+      )}
+      {...props}
+    />
+  )
+})
 Card.displayName = "Card"
 
 const CardHeader = React.forwardRef<
