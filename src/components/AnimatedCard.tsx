@@ -7,13 +7,15 @@ interface AnimatedCardProps {
   className?: string;
   delay?: number;
   hoverEffect?: boolean;
+  variant?: "default" | "gradient" | "subtle";
 }
 
 const AnimatedCard = ({ 
   children, 
   className, 
   delay = 0,
-  hoverEffect = true
+  hoverEffect = true,
+  variant = "default"
 }: AnimatedCardProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -25,12 +27,24 @@ const AnimatedCard = ({
     return () => clearTimeout(timer);
   }, [delay]);
 
+  const getVariantClasses = () => {
+    switch (variant) {
+      case "gradient":
+        return "bg-gradient-to-br from-white/90 to-secondary/30 dark:from-gray-800/90 dark:to-gray-900/30";
+      case "subtle":
+        return "bg-background/50 backdrop-blur-xs border-primary/5";
+      default:
+        return "glass-card";
+    }
+  };
+
   return (
     <div
       className={cn(
-        "glass-card p-6 opacity-0 transform translate-y-4 transition-all duration-500 ease-out",
+        "p-6 opacity-0 transform translate-y-4 transition-all duration-500 ease-out rounded-xl border border-border/50 shadow-sm",
+        getVariantClasses(),
         isVisible && "opacity-100 translate-y-0",
-        hoverEffect && "hover:translate-y-[-5px] hover:shadow-lg",
+        hoverEffect && "hover:translate-y-[-5px] hover:shadow-md transition-all duration-300",
         className
       )}
     >

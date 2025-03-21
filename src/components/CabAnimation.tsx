@@ -6,22 +6,35 @@ interface CabAnimationProps {
   className?: string;
   color?: string;
   size?: number;
+  speed?: "slow" | "normal" | "fast";
 }
 
 const CabAnimation = ({ 
   className, 
   color = "text-primary", 
-  size = 48 
+  size = 48,
+  speed = "normal"
 }: CabAnimationProps) => {
+  const getSpeedClass = () => {
+    switch (speed) {
+      case "slow": return "animate-car-move-slow";
+      case "fast": return "animate-car-move-fast";
+      default: return "animate-car-move";
+    }
+  };
+
   return (
     <div className="relative w-full overflow-hidden h-16">
       <div className={cn(
-        "absolute animate-car-move",
+        "absolute",
+        getSpeedClass(),
         className
       )}>
-        <Car size={size} className={color} />
+        <div className="animate-float">
+          <Car size={size} className={cn(color, "drop-shadow-md")} />
+        </div>
       </div>
-      <div className="absolute bottom-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
+      <div className="absolute bottom-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
     </div>
   );
 };

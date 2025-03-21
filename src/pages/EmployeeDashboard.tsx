@@ -8,6 +8,7 @@ import Navbar from "@/components/Navbar";
 import BookingForm from "@/components/BookingForm";
 import BookingHistory from "@/components/BookingHistory";
 import AnimatedCard from "@/components/AnimatedCard";
+import CabAnimation from "@/components/CabAnimation";
 
 const EmployeeDashboard = () => {
   const { user } = useContext(UserContext);
@@ -27,9 +28,12 @@ const EmployeeDashboard = () => {
         <div className="container px-4 mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* User Profile Card */}
-            <AnimatedCard className="md:col-span-1">
+            <AnimatedCard 
+              className="md:col-span-1"
+              variant="gradient"
+            >
               <div className="flex flex-col items-center text-center p-6">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 shadow-inner animate-pulse-soft">
                   <UserIcon className="h-8 w-8 text-primary" />
                 </div>
                 <h2 className="text-xl font-semibold">{user?.name}</h2>
@@ -41,7 +45,7 @@ const EmployeeDashboard = () => {
                   <h3 className="text-sm font-medium mb-2">Quick Actions</h3>
                   <button 
                     onClick={() => setActiveTab("book")}
-                    className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors py-2 w-full text-left"
+                    className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors py-2 w-full text-left button-effect"
                   >
                     <PlusCircle className="h-4 w-4" />
                     <span>Book a New Cab</span>
@@ -49,11 +53,15 @@ const EmployeeDashboard = () => {
                   
                   <button 
                     onClick={() => setActiveTab("history")}
-                    className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors py-2 w-full text-left"
+                    className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors py-2 w-full text-left button-effect"
                   >
                     <History className="h-4 w-4" />
                     <span>View Booking History</span>
                   </button>
+                </div>
+                
+                <div className="mt-8 w-full">
+                  <CabAnimation speed="slow" size={36} />
                 </div>
               </div>
             </AnimatedCard>
@@ -73,7 +81,7 @@ const EmployeeDashboard = () => {
                 </TabsList>
                 
                 <TabsContent value="book" className="mt-0">
-                  <AnimatedCard>
+                  <AnimatedCard variant="subtle">
                     <CardHeader>
                       <CardTitle>Book a Cab</CardTitle>
                       <CardDescription>
@@ -87,7 +95,7 @@ const EmployeeDashboard = () => {
                 </TabsContent>
                 
                 <TabsContent value="history" className="mt-0">
-                  <AnimatedCard>
+                  <AnimatedCard variant="subtle">
                     <CardHeader>
                       <CardTitle>Your Booking History</CardTitle>
                       <CardDescription>

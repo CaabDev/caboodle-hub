@@ -69,6 +69,9 @@ export default {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
+			backdropBlur: {
+				'xs': '2px',
+			},
 			keyframes: {
 				'accordion-down': {
 					from: { height: '0' },
@@ -94,6 +97,14 @@ export default {
 					'0%': { transform: 'translateX(-100%)' },
 					'100%': { transform: 'translateX(100vw)' }
 				},
+				'car-move-slow': {
+					'0%': { transform: 'translateX(-100%)' },
+					'100%': { transform: 'translateX(100vw)' }
+				},
+				'car-move-fast': {
+					'0%': { transform: 'translateX(-100%)' },
+					'100%': { transform: 'translateX(100vw)' }
+				},
 				'pulse-light': {
 					'0%, 100%': { opacity: '1' },
 					'50%': { opacity: '0.7' }
@@ -101,6 +112,10 @@ export default {
 				'float': {
 					'0%, 100%': { transform: 'translateY(0)' },
 					'50%': { transform: 'translateY(-10px)' }
+				},
+				'shimmer': {
+					'0%': { backgroundPosition: '-1000px 0' },
+					'100%': { backgroundPosition: '1000px 0' }
 				}
 			},
 			animation: {
@@ -110,12 +125,12 @@ export default {
 				'fade-out': 'fade-out 0.5s ease-out',
 				'scale-in': 'scale-in 0.3s ease-out',
 				'car-move': 'car-move 15s linear infinite',
+				'car-move-slow': 'car-move-slow 25s linear infinite',
+				'car-move-fast': 'car-move-fast 10s linear infinite',
 				'pulse-light': 'pulse-light 3s ease-in-out infinite',
-				'float': 'float 6s ease-in-out infinite'
+				'float': 'float 6s ease-in-out infinite',
+				'shimmer': 'shimmer 2s linear infinite'
 			},
-			backdropBlur: {
-				'xs': '2px',
-			}
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
